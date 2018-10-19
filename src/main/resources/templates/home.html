@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<object th:include="fragments/fragment :: title" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment ::navbar"></nav>
+	
+	<div class="jumbotron">
+		  <h1 class="display-4">Sistem Informasi kepegawaian</h1>
+		  <p class="lead">Selamat datang di Sistem Informasi Kepegawaian </p>
+		  <hr class="my-4">
+		  <h4>Lihat Data Pegawaian berdasarkan NIP</h4>
+		  <div class="lead">
+		  	<form th:action="@{/pegawai}"  method="GET">
+			  	<div class="form-group">
+				    <label for="nip">Masukkan Nomor Induk Pegawai</label>
+				    <br>
+					<input type="text" name="nip"/>
+				</div>
+				<button class="btn btn-primary btn-md" type="submit">Lihat</button>
+			</form>
+			</div>
+			<br>
+			
+			<h4>Lihat Detail Jabatan</h4>
+		  	<div class="lead">
+		  	<form th:action="@{/jabatan/view}"  method="GET">
+			  	<div class="form-group">
+				    <label for="idJabatan">Pilih Jabatan:</label>
+				    <br>
+					<select name = "idJabatan">
+					    <option th:each="jbtn : ${jabatan}" th:value="${jbtn.id}" th:text="${jbtn.nama}">
+					    </option>
+					</select>
+				</div>
+				<button class="btn btn-primary btn-md" type="submit">Lihat</button>
+			</form>
+		  </div>
+		  <br>
+
+		  <h4>Lihat Termuda dan Tertua</h4>
+		  	<div class="lead">
+		  	<form th:action="@{/pegawai/termuda-tertua}"  method="GET">
+			  	<div class="form-group">
+				    <label for="idinstansi">Pilih Instansi</label>
+				    <br>
+					<select class="form-control" required="required" name="idInstansi">
+						<option th:each="instansi : ${instansi} " th:text="${instansi.nama}" th:value="${instansi.id}"></option>
+					</select>
+				</div>
+				<button class="btn btn-primary btn-md" type="submit">Lihat</button>
+			</form>
+		  </div>
+		  <br>
+		  
+  		  <div>
+			<form th:action="@{/jabatan/viewall}" th:method="GET" >
+				<label for="idJabatan">Lihat Semua Jabatan</label>
+				    <br>
+				<button type="submit" class="btn btn-primary">Lihat</button>
+			</form>
+		  </div>
+			<br>
+	  	
+		  	<div class="lead">
+		  	<form th:action="@{/jabatan/tambah}"  method="GET">
+			    <label for="idJabatan">Tambah Jabatan</label>
+			    <br>
+				<button class="btn btn-primary btn-md" type="submit">Tambah</button>
+			</form>
+		  </div>
+		  
+			<br>
+	  	
+		  	<div class="lead">
+		  	<form th:action="@{/pegawai/tambah}"  method="GET">
+			    <label for="idPegawai">Tambah Pegawai</label>
+			    <br>
+				<button class="btn btn-primary btn-md" type="submit">Tambah</button>
+			</form>
+		  </div>
+			<br>
+	  	
+		  	
+		  
+	
+	  </div>
+	  
+	  
+</body>
+</html>

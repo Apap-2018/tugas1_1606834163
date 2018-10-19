@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+	<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<object th:include="fragments/fragment :: title" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment ::navbar"></nav>
+
+			<table>
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Nama</th>
+						<th>Deskripsi</th>
+						<th>Gaji Pokok</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="jabatan,itarationStatus : *{listJabatan}">
+						<td th:text = "${itarationStatus.count}"></td>
+						<td th:text = "${jabatan.nama}"></td>
+						<td th:text = "${jabatan.deskripsi}"></td>
+						<td th:text = "'Rp'+${jabatan.gajiPokok}"></td>
+						
+					</tr>
+				</tbody>
+			</table>
+				<td><a th:href="@{/}">Home</a></td>
+			<div>
+			<form th:action="@{/jabatan/viewall}" th:method="GET" >
+				<label for="idJabatan">Lihat Semua Jabatan</label>
+				    <br>
+				<button type="submit" class="btn btn-primary">Lihat</button>
+			</form>
+		  </div>
+			<br>
+	  	
+		  	<div class="lead">
+		  	<form th:action="@{/jabatan/tambah}"  method="GET">
+			    <label for="idJabatan">Tambah Jabatan</label>
+			    <br>
+				<button class="btn btn-primary btn-md" type="submit">Tambah</button>
+			</form>
+		  </div>
+	</body>
+</html>
