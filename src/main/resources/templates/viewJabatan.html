@@ -25,6 +25,10 @@
 						<td>Gaji</td>
 						<td th:text="'Rp'+ *{gajiPokok}"></td>
 					</tr>
+					<tr>
+						<td>Jumlah Pegawai</td>
+						<td th:text="${jumlahPegawai}"></td>
+					</tr>
 				</tbody>
 			</table>
 			<br>			
@@ -40,25 +44,18 @@
 				<button class="btn btn-primary btn-md" type="submit">Hapus</button>
 			</form>
 		</div>
-		
-	</div>
-	
-	<div>
-			<form th:action="@{/jabatan/viewall}" th:method="GET" >
-				<label for="idJabatan">Lihat Semua Jabatan</label>
-				    <br>
-				<button type="submit" class="btn btn-primary">Lihat</button>
-			</form>
-		  </div>
-			<br>
-	  	
-		  	<div class="lead">
+		<br>
+		<div class="lead">
 		  	<form th:action="@{/jabatan/tambah}"  method="GET">
 			    <label for="idJabatan">Tambah Jabatan</label>
 			    <br>
 				<button class="btn btn-primary btn-md" type="submit">Tambah</button>
 			</form>
 		  </div>
+		
+	</div>
+  	
+		  	
 	
 	
 </body>
