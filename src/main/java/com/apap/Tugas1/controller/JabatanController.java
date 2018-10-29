@@ -1,5 +1,7 @@
 package com.apap.Tugas1.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,13 +11,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.apap.Tugas1.model.JabatanModel;
-import com.apap.Tugas1.model.JabatanPegawaiModel;
+import com.apap.Tugas1.model.PegawaiModel;
 import com.apap.Tugas1.service.JabatanService;
+import com.apap.Tugas1.service.PegawaiService;
 
 @Controller
 public class JabatanController {
 	@Autowired
 	private JabatanService jabatanService;
+	
+	@Autowired
+	private PegawaiService pegawaiService;
 	
 	
 	@RequestMapping(value = "/jabatan/tambah", method = RequestMethod.GET)
@@ -39,14 +45,9 @@ public class JabatanController {
 		model.addAttribute("title", "Detail Jabatan");
 		JabatanModel jabatan = jabatanService.findJabatanById(idJabatan);
 		
-		int count = 0;
-		for(JabatanPegawaiModel jp : jabatan.getPegawaiJabatan()) {
-			if(jp.getIdPegawai().getId() == idJabatan) {
-				count++;
-			}
-		}
-		model.addAttribute("jumlahPegawai", count);
-
+		List<PegawaiModel> listPegawai = pegawaiService.getPegawaiByJabatan(jabatan); 
+		model.addAttribute("jumlahPegawai", listPegawai.size());
+		
 		model.addAttribute("jabatan", jabatan);
 		return "viewJabatan";
 	}

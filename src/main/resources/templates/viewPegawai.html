@@ -8,57 +8,56 @@
 
 <body>
 	<nav th:replace="fragments/fragment ::navbar"></nav>
-	<div  class="jumbotron" th:object="${pegawai}">
-		<h3 th:text="'Lihat Data Pegawai - ' + *{nip}"></h3>
-		<table class="table table-borderless" style="margin-left:auto;">
-			<tbody>
-				<tr>
-					<td>NIP</td>
-					<td th:text="*{nip}"></td>
-				</tr>
-				<tr>
-					<td>Nama</td>
-					<td th:text="*{nama}"></td>
-				</tr>
-				<tr>
-					<td>Tempat Lahir</td>
-					<td th:text="*{tempatLahir}"></td>
-				</tr>
-				<tr>
-					<td>Tanggal Lahir</td>
-					<td th:text="*{tanggalLahir}"></td>
-				</tr>
-				<tr>
-					<td>Tahun Masuk</td>
-					<td th:text="*{tahunMasuk}"></td>
-				</tr>
-				<tr>
-					<td>Nama Instansi</td>
-					<td th:text="${pegawai.instansiPegawai.nama}"></td>
-				</tr>
-				<tr>
-					<td>Jabatan</td>
-					<td>
-						<ul th:each="jbtn : ${jabatan}">
-							<li th:text=" ${jbtn}"></li>
-						</ul>
-					</td>
-				</tr>
-				<tr>
-					<td>Gaji</td>
-					<td th:text="'Rp'+${gaji}"></td>
-				</tr>
-			</tbody>
-		</table>
-		<div class="lead">
-		  	<form th:action="@{/pegawai/ubah}"  method="GET">
-			    <label for="nip">Ubah Pegawai</label>
-			    <br>
-				<button class="btn btn-primary btn-md" type="submit">Tambah</button>
-			</form>
-		  </div>
-	</div>
-	
-	
+	<div class="lead">
+		<form th:action="@{/pegawai/ubah}"  method="GET">
+		<div  class="jumbotron" th:object="${pegawai}">
+			<input type="hidden" name="nip" th:value="*{nip}">
+			<h3 th:text="'Lihat Data Pegawai - ' + *{nip}"></h3>
+				<table class="table table-borderless" style="margin-left:auto;">
+					<tbody>
+						<tr>
+							<td>NIP</td>
+							<td th:text="*{nip}"></td>
+						</tr>
+						<tr>
+							<td>Nama</td>
+							<td th:text="*{nama}"></td>
+						</tr>
+						<tr>
+							<td>Tempat Lahir</td>
+							<td th:text="*{tempatLahir}"></td>
+						</tr>
+						<tr>
+							<td>Tanggal Lahir</td>
+							<td th:text="*{tanggalLahir}"></td>
+						</tr>
+						<tr>
+							<td>Tahun Masuk</td>
+							<td th:text="*{tahunMasuk}"></td>
+						</tr>
+						<tr>
+							<td>Nama Instansi</td>
+							<td th:text="${pegawai.instansiPegawai.nama}"></td>
+						</tr>
+						<tr>
+							<td>Jabatan</td>
+							<td>
+								<ul th:each="jbtn : ${jabatan}">
+									<li th:text=" ${jbtn}"></li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td>Gaji</td>
+							<td th:text="'Rp'+${gaji}"></td>
+						</tr>
+					</tbody>
+				</table>
+		
+				<button class="btn btn-primary btn-md" type="submit">Ubah</button>
+			</div>
+		</form>
+	  </div>	
+
 </body>
 </html>

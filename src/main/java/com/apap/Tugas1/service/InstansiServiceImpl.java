@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.apap.Tugas1.model.InstansiModel;
+import com.apap.Tugas1.model.ProvinsiModel;
 import com.apap.Tugas1.repository.InstansiDb;
 
 @Service
@@ -17,7 +18,7 @@ public class InstansiServiceImpl implements InstansiService{
 	private InstansiDb instansiDb;
 	
 	@Override
-	public InstansiModel getInstansiDetailById(long id) {
+	public InstansiModel getInstansiDetailById(Long id) {
 		// TODO Auto-generated method stub
 		return instansiDb.findById(id).get();
 	}
@@ -27,5 +28,11 @@ public class InstansiServiceImpl implements InstansiService{
 		// TODO Auto-generated method stub
 		return instansiDb.findAll();
 	}
+
+	@Override
+	public List<InstansiModel> getInstansiByProvinsi(ProvinsiModel provinsi) {
+		// TODO Auto-generated method stub
+		return instansiDb.findByProvinsi(provinsi);
+		}
 
 }

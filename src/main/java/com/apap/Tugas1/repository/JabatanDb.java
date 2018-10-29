@@ -13,3 +13,5 @@ public interface JabatanDb extends JpaRepository<JabatanModel, Long>{
 	Optional<JabatanModel> findById(long id);
 	List<JabatanModel> findAll();
 }
+
+

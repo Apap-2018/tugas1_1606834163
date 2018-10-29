@@ -9,8 +9,8 @@
 
 <body>
 	<nav th:replace="fragments/fragment ::navbar"></nav>
-
-			<table>
+	<div class="jumbotron">
+		<table class="jumbotron">
 				<thead>
 					<tr>
 						<th>No.</th>
@@ -22,7 +22,7 @@
 				<tbody>
 					<tr th:each="jabatan,itarationStatus : *{listJabatan}">
 						<td th:text = "${itarationStatus.count}"></td>
-						<td th:text = "${jabatan.nama}"></td>
+						<td><a th:href="@{'/jabatan/view?idJabatan=' + ${jabatan.id}}" th:text="${jabatan.nama}" /></td>
 						<td th:text = "${jabatan.deskripsi}"></td>
 						<td th:text = "'Rp'+${jabatan.gajiPokok}"></td>
 						
@@ -38,5 +38,6 @@
 				<button class="btn btn-primary btn-md" type="submit">Tambah</button>
 			</form>
 		  </div>
+	</div>
 	</body>
 </html>

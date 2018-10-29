@@ -68,6 +68,10 @@ public class PegawaiModel implements Serializable {
 	@JsonIgnore
 	private InstansiModel instansi;
 
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinTable(name = "jabatan_pegawai", joinColumns = {@JoinColumn(name = "id_pegawai")}, inverseJoinColumns = {@JoinColumn(name = "id_jabatan")})
+	private List<JabatanModel> listJabatan = new ArrayList<JabatanModel>();
+
 
 	public long getId() {
 		return id;
@@ -134,6 +138,38 @@ public class PegawaiModel implements Serializable {
 
 	public void setJabatanPegawai(List<JabatanPegawaiModel> jabatanPegawai) {
 		this.jabatanPegawai = jabatanPegawai;
+	}
+	
+	public List<JabatanModel> getListJabatan() {
+		return listJabatan;
+	}
+
+	public void setListJabatan(List<JabatanModel> listJabatan) {
+		this.listJabatan = listJabatan;
+	}
+	
+	public double getGaji() {
+		double presentaseTunjangan = this.instansi.getProvinsiInstansi().getPresentaseTunjangan();
+		double gaji = this.listJabatan.get(0).getGajiPokok();
+		for (int i = 1 ; i < this.listJabatan.size(); i ++) {
+			double currGaji = this.listJabatan.get(i).getGajiPokok();
+			if(gaji < currGaji) {
+				gaji = currGaji;
+			}
+		}
+		
+		gaji = ((gaji * presentaseTunjangan /100) + gaji);
+		
+		return gaji;
+	}
+	
+	public List<String> getListJabatanString(){
+		List<String> listJabatanString = new ArrayList<>(); 
+		for(JabatanModel j : this.listJabatan) {
+			listJabatanString.add(j.getNama());
+		}
+		
+		return listJabatanString;
 	}
 	
 	

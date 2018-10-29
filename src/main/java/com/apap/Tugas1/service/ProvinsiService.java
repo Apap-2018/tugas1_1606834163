@@ -8,4 +8,6 @@ public interface ProvinsiService {
 
 	List<ProvinsiModel> getAllProvinsi();
 
+	ProvinsiModel getProvinsiById(Long idProvinsi);
+
 }

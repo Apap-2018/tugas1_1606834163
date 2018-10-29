@@ -1,5 +1,6 @@
 package com.apap.Tugas1.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.apap.Tugas1.model.InstansiModel;
+import com.apap.Tugas1.model.JabatanModel;
 import com.apap.Tugas1.model.JabatanPegawaiModel;
 import com.apap.Tugas1.model.PegawaiModel;
 import com.apap.Tugas1.repository.PegawaiDb;
@@ -59,6 +61,32 @@ public class PegawaiServiceImpl implements PegawaiService{
 		// TODO Auto-generated method stub
 		pegawaiDb.save(pegawai);
 	}
+
+	@Override
+	public List<PegawaiModel> getPegawaiByJabatanAndInstansi(JabatanModel jabatan, InstansiModel instansi) {
+		// TODO Auto-generated method stub
+		return pegawaiDb.findByListJabatanAndInstansi(jabatan, instansi);
+		}
+
+	@Override
+	public List<PegawaiModel> getPegawaiByInstansi(InstansiModel instansi) {
+		// TODO Auto-generated method stub
+		return pegawaiDb.findByInstansi(instansi);
+		}
+
+	@Override
+	public List<PegawaiModel> getPegawaiByJabatan(JabatanModel jabatan) {
+		// TODO Auto-generated method stub
+		return pegawaiDb.findByListJabatan(jabatan);
+		}
+
+	@Override
+	public List<JabatanModel> getPegawaiByInstansiAndTanggalLahirAndTahunMasuk(InstansiModel instansiPegawai,
+			Date tanggalLahir, String tahunMasuk) {
+		// TODO Auto-generated method stub
+		return pegawaiDb.findByInstansiAndTanggalLahirAndTahunMasuk(instansiPegawai,
+				 tanggalLahir, tahunMasuk);
+		}
 	
 
 }

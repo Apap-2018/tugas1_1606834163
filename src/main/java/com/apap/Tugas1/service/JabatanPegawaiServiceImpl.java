@@ -4,7 +4,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.apap.Tugas1.model.JabatanPegawaiModel;
 
 @Service
 @Transactional
